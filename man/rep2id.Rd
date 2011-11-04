@@ -1,18 +1,15 @@
 \name{rep2id}
 \alias{rep2id}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\title{rep2id}
+\description{Turns a vector of replicate numbers into a vector 
 }
 \usage{
 rep2id(rep)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{rep}{
+  \item{rep}{a vector giving the number of replicates for each component
 %%     ~~Describe \code{rep} here~~
 }
 }
@@ -20,17 +17,13 @@ rep2id(rep)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+a vector giving indices
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Jarad Niemi
 }
 \note{
 %%  ~~further notes~~
@@ -39,26 +32,13 @@ rep2id(rep)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{resampling}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(rep) {
-  ids           = integer(sum(rep))
-  current.index = integer(1)
-  
-  for (i in 1:length(rep)) {
-    if (rep[i] != 0) {
-      ids[current.index+1:rep[i]] = i
-      current.index = current.index+rep[i]
-    }
-  }
-  return(ids)
-  }
+# The goal here is to get functionality that might be expected from
+# rep(1:4,each=1:4) # but the rep function only takes the first value in `each'
+all.equal(rep(1:4,each=1:4),rep2id(rep(1,4)))
+rep2id(1:4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -1,26 +1,19 @@
 \name{inverse.cdf.weights}
 \alias{inverse.cdf.weights}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{Compute weights by inverse cdf}
+\description{Indices given by the inverse cdf method}
 \usage{
 inverse.cdf.weights(weights, uniforms = runif(length(weights)))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{weights}{
-%%     ~~Describe \code{weights} here~~
-}
-  \item{uniforms}{
-%%     ~~Describe \code{uniforms} here~~
-}
+  \item{weights}{a vector of normalized probabilities}
+  \item{uniforms}{a vector of uniform (0,1) random variables}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+For each uniform u, returns the index j such that 
+`cusum(weights)[j-1] < u < cusum(weights)[j]'.
 }
 \value{
 %%  ~Describe the value returned
@@ -33,7 +26,7 @@ inverse.cdf.weights(weights, uniforms = runif(length(weights)))
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Jarad Niemi
 }
 \note{
 %%  ~~further notes~~
@@ -42,36 +35,12 @@ inverse.cdf.weights(weights, uniforms = runif(length(weights)))
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{resampling}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(weights,uniforms=runif(length(weights))) {
-  if (is.unsorted(uniforms)) uniforms = sort(uniforms)
-
-  num.samples   = length(uniforms)
-  ids           = integer(num.samples)
-  weights.cusum = cumsum(weights)
-
-  index = as.integer(1)
-  one   = as.integer(1)
-  for (i in 1:num.samples) {
-    found = FALSE
-    while (!found) {
-      if (uniforms[i] > weights.cusum[index]) {
-        index = index+one
-      } else {
-        found = TRUE
-      }
-    }
-    ids[i] = index
-  }
-  return(ids)
-  }
+ws = renormalize.weights(runif(6))
+inverse.cdf.weights(ws)
+inverse.cdf.weights(ws,runif(9,0,0.2))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
