@@ -56,7 +56,7 @@ resample(ws)
 N = 1000; W = 1^2; V = 1; m0 = 0; C0 = 1
 true.x = rep(NA,N); true.x[1] = rnorm(1,m0,sqrt(C0))
 for (i in 2:N) true.x[i] = rnorm(1,true.x[i-1],sqrt(W)) # Evolve x
-y = rnorm(N,true.x,sqrt(V))                                 # Noisy data
+y = rnorm(N,true.x,sqrt(V))                             # Noisy data
 
 # Run a particle filter
 J = 1e2
@@ -88,5 +88,4 @@ legend("bottomleft",inset=0.01,c("Kalman filter mean","Particle filter mean"),
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ htest }

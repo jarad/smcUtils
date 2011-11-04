@@ -49,7 +49,7 @@ Schemes for Particle Filtering. _Proceedings of the 4th International Symposium
 on Image and Signal Processing and Analysis_
 
 Carpenter, J., Clifford, P., Fearnhead, P. An improved particle filter for 
-non-linear problems. _IEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
+non-linear problems. _IEEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 }
 \author{Jarad Niemi}
 \note{
@@ -72,5 +72,4 @@ branching.resample(ws)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ htest }
