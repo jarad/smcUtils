@@ -1,0 +1,36 @@
+resample <-
+function(weights, num.samples=length(weights), 
+                    method = c("multinomial","residual","stratified","systematic","branching"),
+                    nonuniformity = c("none","ess","cov","entropy"), threshold=NULL,
+                    resample.function = multinomial.resample)
+{
+  method        <- match.arg(method)
+  nonuniformity <- match.arg(nonuniformity)
+
+  do.resample = FALSE
+  switch(nonuniformity,
+    "none"     = { do.resample = TRUE; },
+    "ess"      = { if (is.null(threshold)) threshold=0.5*num.samples; 
+                   if (ess.weights(weights)<threshold) do.resample = TRUE; },
+    "cov"      = { if (is.null(threshold)) threshold=0.5*num.samples;
+                   if (cov.weights(weights)>threshold) do.resample = TRUE },
+    "entropy"  = { if (is.null(threshold)) threshold=0.5*log2(num.samples);
+                   if (ent.weights(weights)<threshold) do.resample = TRUE }
+  )
+
+  if (do.resample) {
+    switch(method,
+      "multinomial" = { ids = multinomial.resample(weights, num.samples) },
+      "residual"    = { ids = residual.resample(   weights, num.samples, resample.function) },
+      "stratified"  = { ids = stratified.resample( weights, num.samples) },
+      "systematic"  = { ids = systematic.resample( weights, num.samples) },
+      "branching"   = { ids = branching.resample(  weights, num.samples) }
+    )
+    weights = rep(1/num.samples,num.samples)
+  } else { 
+    ids = 1:length(weights)
+  }
+
+  return(list(weights=weights,indices=ids))
+}
+
