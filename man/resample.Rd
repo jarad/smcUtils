@@ -1,52 +1,43 @@
 \name{resample}
 \alias{resample}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+
+\title{Resample}
+\description{A set of resampling functions with unbiased number of replicates.}
 \usage{
-resample(weights, num.samples = length(weights), method = c("multinomial", "residual", "stratified", "systematic", "branching"), nonuniformity = c("none", "ess", "cov", "entropy"), threshold = NULL, resample.function = multinomial.resample)
+resample(weights, num.samples=length(weights),
+         method = c("multinomial","residual","stratified","systematic","branching"),
+         nonuniformity = c("none","ess","cov","entropy"), threshold = NULL,
+         resample.function = multinomial.resample)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{weights}{
-%%     ~~Describe \code{weights} here~~
-}
-  \item{num.samples}{
-%%     ~~Describe \code{num.samples} here~~
-}
-  \item{method}{
-%%     ~~Describe \code{method} here~~
-}
-  \item{nonuniformity}{
-%%     ~~Describe \code{nonuniformity} here~~
-}
-  \item{threshold}{
-%%     ~~Describe \code{threshold} here~~
-}
-  \item{resample.function}{
-%%     ~~Describe \code{resample.function} here~~
-}
+  \item{weights}{a vector of normalized weights}
+  \item{num.samples}{a scalar indicating the number of samples to return (for `branching.resample',
+  `num.samples' is the expected number of samples as the actual number is random)}
+  \item{method}{a character string indicating the resampling method to use. One
+  of `"multinomial"' (default), `"residual"', `"stratified"', `"systematic"', or
+  `"branching"', can be abbreviated.}
+  \item{nonuniformity}{a character string indicating which hueristic to use for
+  measuring weight nonuniformity. One of `"none"' (default), `"ess"', `"cov"', or
+  `"entropy"', can be abbreviated. If "none", resampling will always be performed.}
+  \item{threshold}{a scalar indicating when to resample. If `nonuniformity="none"',
+  resampling is always performed regardless of threshold. If `nonuniformity="ess"'
+  or "entropy", resampling is performed when `nonuniformity<threshold'. If
+  `nonuniformity="cov"', resampling is performed when `nonuniformity>
+  threshold'. The default threshold is `0.5*num.samples' for "ess" and "cov", and
+  `0.5*log2(num.samples)' for "entropy".}
+  \item{resample.function}{the resampling function to use on the remainder
+  (only used when method = "residual")}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{weights}{the component weights}
+  \item{indices}{an integer vector containing the indices of resampled components.
+  If no resampling was performed, then `indices=1:length(weights)'.}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
+\author{Jarad Niemi}
 \note{
 %%  ~~further notes~~
 }
@@ -54,48 +45,46 @@ resample(weights, num.samples = length(weights), method = c("multinomial", "resi
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{resampling}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+ws = renormalize.weights(runif(10))
+resample(ws)
 
-## The function is currently defined as
-function(weights, num.samples=length(weights), 
-                    method = c("multinomial","residual","stratified","systematic","branching"),
-                    nonuniformity = c("none","ess","cov","entropy"), threshold=NULL,
-                    resample.function = multinomial.resample)
-{
-  method        <- match.arg(method)
-  nonuniformity <- match.arg(nonuniformity)
+## A more involved example, comparing particle filtering with the Kalman filter
+# Generate data from a local level linear model
+N = 1000; W = 1^2; V = 1; m0 = 0; C0 = 1
+true.x = rep(NA,N); true.x[1] = rnorm(1,m0,sqrt(C0))
+for (i in 2:N) true.x[i] = rnorm(1,true.x[i-1],sqrt(W)) # Evolve x
+y = rnorm(N,true.x,sqrt(V))                                 # Noisy data
 
-  do.resample = FALSE
-  switch(nonuniformity,
-    "none"     = { do.resample = TRUE; },
-    "ess"      = { if (is.null(threshold)) threshold=0.5*num.samples; 
-                   if (ess.weights(weights)<threshold) do.resample = TRUE; },
-    "cov"      = { if (is.null(threshold)) threshold=0.5*num.samples;
-                   if (cov.weights(weights)>threshold) do.resample = TRUE },
-    "entropy"  = { if (is.null(threshold)) threshold=0.5*log2(num.samples);
-                   if (ent.weights(weights)<threshold) do.resample = TRUE }
-  )
+# Run a particle filter
+J = 1e2
+x  = matrix(NA,N,J); x[1,]  = rnorm(J,m0,C0) # Sample from the prior for x
+ws = matrix(NA,N,J); ws[1,] = renormalize.weights(dnorm(y[1],x[1,],sqrt(V),log=TRUE))
 
-  if (do.resample) {
-    switch(method,
-      "multinomial" = { ids = multinomial.resample(weights, num.samples) },
-      "residual"    = { ids = residual.resample(   weights, num.samples, resample.function) },
-      "stratified"  = { ids = stratified.resample( weights, num.samples) },
-      "systematic"  = { ids = systematic.resample( weights, num.samples) },
-      "branching"   = { ids = branching.resample(  weights, num.samples) }
-    )
-    weights = rep(1/num.samples,num.samples)
-  } else { 
-    ids = 1:length(weights)
-  }
+# Run a Kalman filter
+m = rep(NA,N); m[1] = m0 # Kalman filter expectation
+M = rep(NA,N); M[1] = C0 # Kalman filter variance
 
-  return(list(weights=weights,indices=ids))
-  }
+for (i in 2:N) {
+  # Particle filter
+  component   = resample(ws[i-1,],J,"stratified","ess",0.8*J)
+  x[i,]       = rnorm(J,x[i-1,component$indices],sqrt(W))
+  log.weights = log(component$weights)+dnorm(y[i],x[i,],sqrt(V),log=TRUE)
+  ws[i,]      = renormalize.weights(log.weights,log=TRUE)
+
+  # Kalman filter
+  K    = (M[i-1]+W)/(M[i-1]+W+V) # Adaptive coefficient
+  m[i] = K*y[i]+(1-K)*m[i-1]
+  M[i] = K*M[i-1]
+}
+
+pf.m = apply(x*ws,1,sum)
+plot(m,type='l',ylim=range(pf.m,m),xlab='t',ylab='x')
+lines(pf.m,col='red')
+legend("bottomleft",inset=0.01,c("Kalman filter mean","Particle filter mean"),
+       col=c("black","red"),lty=rep(1,2),bg="white")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
