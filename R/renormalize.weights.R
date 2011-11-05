@@ -1,6 +1,8 @@
 renormalize.weights <-
-function(weights,log=FALSE, useC=F) {
-  if (useC) return(.C("renormalize", weights=as.double(weights),
+function(weights, log=FALSE, useC=FALSE) {
+  if (useC) return(.C("renormalize", 
+                      weights=as.double(weights),
+                      as.integer(length(weights)),
                       as.integer(log))$weights)
 
   # If provided log-weights, exponentiate.
