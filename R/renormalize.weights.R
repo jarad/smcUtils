@@ -1,6 +1,6 @@
 renormalize.weights <-
 function(weights, log=FALSE, useC=FALSE) {
-  if (useC) return(.C("renormalize", 
+  if (useC) return(.C("renormalize_wrap", 
                       weights=as.double(weights),
                       as.integer(length(weights)),
                       as.integer(log))$weights)
