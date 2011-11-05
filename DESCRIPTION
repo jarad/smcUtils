@@ -6,5 +6,5 @@ Date: 2011-11-04
 Author: Jarad Niemi
 Maintainer: Jarad Niemi <niemi@iastate.edu>
 Description: Provides multinomial, residual, stratified, and systematic resampling functions, coefficient of variation, effective sample size, and entropy measures of weight uniformity, and weight renormalizing function.
-License: GPL 
+License: LGPL-3 
 LazyLoad: yes

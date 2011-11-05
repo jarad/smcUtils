@@ -1,3 +1,5 @@
+#include <Rmath.h>
+
 /* Renormalizes the vector w to sum to 1. If log \ne 0, the weights are assumed to be log weights */
 void renormalize(double *w, int n, int log) {
   int i;
