@@ -2,7 +2,7 @@
 #include <Rmath.h>
 
 /* Performs multinomial resampling on the weights w. Returns the indices for num_samples samples */
-void multinomial_resampling(double *w, int n, int *indices, int num_samples) {
+void multinomial_resample(double *w, int n, int *indices, int num_samples) {
   int i, j;
   double cusum[n], random_uniform;
 
@@ -21,7 +21,7 @@ void multinomial_resampling(double *w, int n, int *indices, int num_samples) {
   PutRNGstate();
 }
 
-void multinomial_resampling_wrap(double *w, int *n, int *indices, int *num_samples) {
+void multinomial_resample_wrap(double *w, int *n, int *indices, int *num_samples) {
   multinomial_resampling(w, *n, indices, *num_samples);
 }
 
