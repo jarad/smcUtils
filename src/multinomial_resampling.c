@@ -1,3 +1,6 @@
+#include <R.h>
+#include <Rmath.h>
+
 /* Performs multinomial resampling on the weights w. Returns the indices for num_samples samples */
 void multinomial_resampling(double *w, int n, int *indices, int num_samples) {
   int i, j;
