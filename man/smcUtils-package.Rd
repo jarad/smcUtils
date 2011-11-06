@@ -10,9 +10,9 @@ filtering.}
 \tabular{ll}{
 Package: \tab smcUtils\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2009-11-19\cr
-License: \tab LGPL-3\cr
+Version: \tab 0.1.2\cr
+Date: \tab 2011-11-06\cr
+License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
 The workhorse of the package is `resample' which will perform multinomial, 
@@ -23,7 +23,7 @@ the resampling when a non-uniformity heuristic crosses a threshold.
 \author{
 Author: Jarad Niemi
 
-Maintainer: Jarad Niemi <niemi@pstat.ucsb.edu>
+Maintainer: Jarad Niemi <niemi@iastate.edu>
 
 }
 \references{
