@@ -49,7 +49,7 @@ ws = renormalize.weights(runif(10))
 resample(ws)
 resample(ws,13)
 resample(ws,method="residual")
-resample(ws,method="residual",resample.function="stratified")
+resample(ws,method="residual",resample.function="stratified.resample")
 resample(ws,17,"stratified","ess",5)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
