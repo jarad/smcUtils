@@ -1,32 +1,25 @@
 \name{rep2id}
 \alias{rep2id}
 %- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{rep2id}
-\description{Turns a vector of replicate numbers into a vector 
-}
-\usage{
-rep2id(rep)
-}
+
+\description{Turns a vector of replicate numbers into a vector }
+
+\usage{rep2id(rep)}
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rep}{a vector giving the number of replicates for each component
 %%     ~~Describe \code{rep} here~~
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 a vector giving indices
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Jarad Niemi
-}
-\note{
-%%  ~~further notes~~
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -42,5 +35,4 @@ rep2id(1:4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ internal }

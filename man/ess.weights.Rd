@@ -50,9 +50,6 @@ Methods in Practice
 Jarad Niemi
 }
 
-\note{
-%%  ~~further notes~~
-}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
