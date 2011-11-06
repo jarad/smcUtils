@@ -12,6 +12,7 @@ resample(weights, num.samples=length(weights),
          resample.function = multinomial.resample)
 }
 
+
 \arguments{
   \item{weights}{a vector of normalized weights}
   \item{num.samples}{a scalar indicating the number of samples to return (for `branching.resample',
