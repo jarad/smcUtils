@@ -2,7 +2,9 @@
 \alias{resample}
 
 \title{Resample}
+
 \description{A set of resampling functions with unbiased number of replicates.}
+
 \usage{
 resample(weights, num.samples=length(weights),
          method = c("multinomial","residual","stratified","systematic","branching"),
@@ -29,24 +31,19 @@ resample(weights, num.samples=length(weights),
   \item{resample.function}{the resampling function to use on the remainder
   (only used when method = "residual")}
 }
-\details{
 
-}
 \value{
   \item{weights}{the component weights}
   \item{indices}{an integer vector containing the indices of resampled components.
   If no resampling was performed, then `indices=1:length(weights)'.}
 }
+
 \author{Jarad Niemi}
-\note{
-%%  ~~further notes~~
-}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-\code{\link{resampling}}
-}
+\seealso{\code{\link{resampling}}}
+
 \examples{
 ws = renormalize.weights(runif(10))
 resample(ws)
