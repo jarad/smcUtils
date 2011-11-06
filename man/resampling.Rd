@@ -62,8 +62,7 @@ non-linear problems. _IEEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{resample}},\code{\link{renormalize.weights}},
-\code{\link{inverse.cdf.weights}},\code{\link{rep2id}}
+\code{\link{resample}},\code{\link{renormalize.weights}}
 }
 
 \examples{
