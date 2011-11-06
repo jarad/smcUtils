@@ -1,10 +1,10 @@
 Package: smcUtils
 Type: Package
 Title: Utility functions for sequential Monte Carlo
-Version: 0.11
-Date: 2011-11-04
+Version: 0.1.2
+Date: 2011-11-06
 Author: Jarad Niemi
 Maintainer: Jarad Niemi <niemi@iastate.edu>
 Description: Provides multinomial, residual, stratified, and systematic resampling functions, coefficient of variation, effective sample size, and entropy measures of weight uniformity, and weight renormalizing function.
-License: LGPL-3 
+License: GPL-3 
 LazyLoad: yes
