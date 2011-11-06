@@ -36,3 +36,4 @@ non-linear problems. _IEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 }
 % Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
+\keyword{ internal }
