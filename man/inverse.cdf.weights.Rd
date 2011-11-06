@@ -39,4 +39,4 @@ inverse.cdf.weights(ws,runif(9,0,0.2))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ htest }
+\keyword{ internal }
