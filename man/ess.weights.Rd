@@ -43,7 +43,7 @@ a scalar indicating how uniform the weights are
 Liu, J. (2004) _Monte Carlo Strategies in Scientific Computing_
 
 Doucet, A., dr Freitas, N., and Gordon, N. (2001) _Sequential Monte Carlo 
-Methods in Practice
+Methods in Practic_e
 }
 
 \author{
