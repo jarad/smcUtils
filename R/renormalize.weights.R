@@ -1,10 +1,5 @@
 renormalize.weights <-
-function(weights, log=FALSE, useC=FALSE) {
-  if (useC) return(.C("renormalize_wrap", 
-                      weights=as.double(weights),
-                      as.integer(length(weights)),
-                      as.integer(log))$weights)
-
+function(weights,log=FALSE) {
   # If provided log-weights, exponentiate.
   if (log) weights = exp(weights-max(weights)) # max(weights) for numerical stability
   
