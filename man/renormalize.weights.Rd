@@ -14,7 +14,6 @@ set of unnormalized (log) weights.}
   \item{weights}{a vector of non-negative numbers}
   \item{log}{a logical indicating whether the weights are given as the logarithm
   of the weights}
-  \item{useC}{a logical indicating whether the C version should be used}
 }
 \value{a vector of probabilities that sum to 1}
 
