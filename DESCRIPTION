@@ -11,4 +11,6 @@ Description: Provides resampling functions (multinomial, residual, stratified, a
              measures of weight uniformity (coefficient of variation, effective sample size, and 
              entropy), and a weight renormalizing function.
 License: GPL-3 
+URL: https://github.com/jarad/smcUtils
 LazyLoad: yes
+Depends: stats
