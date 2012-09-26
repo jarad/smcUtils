@@ -1,5 +1,5 @@
 
-entropy = function(weights, engine="R") 
+ent.weights = function(weights, engine="R") 
 {
     check.weights(weights, log=F, normalized=T)
     engine=pmatch(engine, c("R","C"))

@@ -1,5 +1,5 @@
 
-renormalize = function(weights, log=F, engine="R")
+renormalize.weights = function(weights, log=F, engine="R")
 {   
     if (!log && any(weights<0)) stop("log=F but negative weights exist.")
 

@@ -1,5 +1,5 @@
 
-ess = function(weights, engine="C") 
+ess.weights = function(weights, engine="C") 
 {
     check.weights(weights, log=F, normalized=T)
     engine=pmatch(engine, c("R","C"))
