@@ -23,7 +23,7 @@ void renormalize(double *w, int n, int log) {
   }
 }
 
-void renormalize_wrap(double *w, int *n, int *log) {
+void renormalize_R(double *w, int *n, int *log) {
   renormalize(w, *n, *log);
 }
 
