@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <R.h>
 #include <Rmath.h>
-#include "utility.h"
 #include "resample.h"
 
 
