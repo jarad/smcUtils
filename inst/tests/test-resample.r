@@ -112,10 +112,10 @@ test_that("stratified resampling gets base case correct", {
     set.seed(1)
     w = runif(4); w=w/sum(w)
     n = 5
-    id = c(0,2,2,3,3)
-    set.seed(2); expect_equal(stratified.resample(w,n,   ),   id)
-    set.seed(2); expect_equal(stratified.resample(w,n,"R")-1, id)
-    set.seed(2); expect_equal(stratified.resample(w,n,"C"),   id)
+    id = c(1,3,3,4,4)
+    set.seed(2); expect_equal(stratified.resample(w,n,   ), id)
+    set.seed(2); expect_equal(stratified.resample(w,n,"R"), id)
+    set.seed(2); expect_equal(stratified.resample(w,n,"C"), id)
 })
 
 
@@ -127,7 +127,7 @@ test_that("stratified resampling: R matches C", {
         seed = proc.time()
         set.seed(seed); mR = stratified.resample(w,n,"R")
         set.seed(seed); mC = stratified.resample(w,n,"C")
-        expect_equal(mR-1,mC)
+        expect_equal(mR,mC)
     }
 })
 
@@ -144,10 +144,10 @@ test_that("multinomial resampling gets base case correct", {
     set.seed(1)
     w = runif(4); w=w/sum(w)
     n = 5
-    id = c(1,1,3,3,3)
-    set.seed(2); expect_equal(multinomial.resample(w,n,   ),   id)
-    set.seed(2); expect_equal(multinomial.resample(w,n,"R")-1, id)
-    set.seed(2); expect_equal(multinomial.resample(w,n,"C"),   id)
+    id = c(2,2,4,4,4)
+    set.seed(2); expect_equal(multinomial.resample(w,n    ), id)
+    set.seed(2); expect_equal(multinomial.resample(w,n,"R"), id)
+    set.seed(2); expect_equal(multinomial.resample(w,n,"C"), id)
 })
 
 
@@ -159,7 +159,7 @@ test_that("multinomial resampling: R matches C", {
         seed = proc.time()
         set.seed(seed); mR = multinomial.resample(w,n,"R")
         set.seed(seed); mC = multinomial.resample(w,n,"C")
-        expect_equal(mR-1,mC)
+        expect_equal(mR,mC)
     }
 })
 
@@ -176,10 +176,10 @@ test_that("systematic resampling gets base case correct", {
     set.seed(1)
     w = runif(4); w=w/sum(w)
     n = 5
-    id = c(0,1,2,3,3)
-    set.seed(2); expect_equal(systematic.resample(w,n,   ),   id)
-    set.seed(2); expect_equal(systematic.resample(w,n,"R")-1, id)
-    set.seed(2); expect_equal(systematic.resample(w,n,"C"),   id)
+    id = c(1,2,3,4,4)
+    set.seed(2); expect_equal(systematic.resample(w,n    ), id)
+    set.seed(2); expect_equal(systematic.resample(w,n,"R"), id)
+    set.seed(2); expect_equal(systematic.resample(w,n,"C"), id)
 })
 
 
@@ -191,7 +191,7 @@ test_that("systematic resampling: R matches C", {
         seed = proc.time()
         set.seed(seed); mR = systematic.resample(w,n,"R")
         set.seed(seed); mC = systematic.resample(w,n,"C")
-        expect_equal(mR-1,mC)
+        expect_equal(mR,mC)
     }
 })
 
@@ -207,10 +207,10 @@ test_that("residual resampling gets base case correct", {
     set.seed(1)
     w = runif(4); w=w/sum(w)
     n = 5
-    id = c(2,3,3,0,2)
-    set.seed(2); expect_equal(residual.resample(w,n   ),   id)
-    set.seed(2); expect_equal(residual.resample(w,n,engine="R")-1, id)
-    set.seed(2); expect_equal(residual.resample(w,n,engine="C"),   id)
+    id = c(3,4,4,1,3)
+    set.seed(2); expect_equal(residual.resample(w,n           ), id)
+    set.seed(2); expect_equal(residual.resample(w,n,engine="R"), id)
+    set.seed(2); expect_equal(residual.resample(w,n,engine="C"), id)
 })
 
 test_that("residual resampling: R matches C", {
@@ -221,16 +221,17 @@ test_that("residual resampling: R matches C", {
         seed = proc.time()
         set.seed(seed); mR = residual.resample(w,n,engine="R")
         set.seed(seed); mC = residual.resample(w,n,engine="C")
-        expect_equal(mR-1,mC)
+        expect_equal(mR,mC)
     }
 })
 
 
+context("Resample chooses proper method")
 
 test_that("resample chooses stratified resamping", {
     w = runif(4); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="stratified")
+    set.seed(seed); m1 = resample(w, method="stratified")$indices
     set.seed(seed); m2 = stratified.resample(w,engine="R")
     expect_equal(m1,m2)
 })
@@ -238,7 +239,7 @@ test_that("resample chooses stratified resamping", {
 test_that("resample chooses multinomial resamping", {
     w = runif(4); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="multinomial")
+    set.seed(seed); m1 = resample(w, method="multinomial")$indices
     set.seed(seed); m2 = multinomial.resample(w,engine="R")
     expect_equal(m1,m2)
 })
@@ -246,7 +247,7 @@ test_that("resample chooses multinomial resamping", {
 test_that("resample chooses systematic resamping", {
     w = runif(4); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="systematic")
+    set.seed(seed); m1 = resample(w, method="systematic")$indices
     set.seed(seed); m2 = systematic.resample(w,engine="R")
     expect_equal(m1,m2)
 })
@@ -254,7 +255,8 @@ test_that("resample chooses systematic resamping", {
 test_that("resample chooses residual resamping", {
     w = runif(4); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="residual")
+    set.seed(seed); m1 = resample(w, method="residual")$indices
     set.seed(seed); m2 = residual.resample(w,engine="R")
     expect_equal(m1,m2)
 })
+

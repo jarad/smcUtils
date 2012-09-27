@@ -32,7 +32,7 @@ residual.resample = function(weights, num.samples=length(weights), rrf="stratifi
                  as.integer(num.samples),
                  id = integer(num.samples),
                  as.integer(rrf))
-        return(out$id)
+        return(out$id+1)
     })
 }
 

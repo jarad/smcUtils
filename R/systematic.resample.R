@@ -19,7 +19,7 @@ systematic.resample = function(weights, num.samples=length(weights), engine="R")
                  as.double(weights),
                  as.integer(num.samples),
                  id = integer(num.samples))
-        return(out$id)
+        return(out$id+1)
     })
 }
 
