@@ -26,7 +26,9 @@ test_that("ess.weights works properly", {
     expect_equal(ess.weights(w    ), n) 
     expect_equal(ess.weights(w,"R"), n) 
     expect_equal(ess.weights(w,"C"), n) 
+})
 
+test_that("ess.weights R matches C", {
     for (i in 1:n.reps) {
         w = runif(rpois(1,10)+1); w=w/sum(w)
         expect_equal(ess.weights(w,engine="R"),
@@ -55,7 +57,9 @@ test_that("ent.weights works properly", {
     expect_equal(ent.weights(w    ), ent) 
     expect_equal(ent.weights(w,"R"), ent) 
     expect_equal(ent.weights(w,"C"), ent) 
+})
 
+test_that("ent.weights R matches C", {
     for (i in 1:n.reps) {
         w = runif(rpois(1,10)+1); w=w/sum(w)
         expect_equal(ent.weights(w,engine="R"),
@@ -84,7 +88,9 @@ test_that("cov.weights works properly", {
     expect_equal(cov.weights(w    ), answer) 
     expect_equal(cov.weights(w,"R"), answer) 
     expect_equal(cov.weights(w,"C"), answer) 
+})
 
+test_that("cov.weights R matches C", {
     for (i in 1:n.reps) {
         w = runif(rpois(1,10)+1); w=w/sum(w)
         expect_equal(cov.weights(w,engine="R"),

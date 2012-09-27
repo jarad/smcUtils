@@ -192,7 +192,7 @@ void entropy_R(int *n, double *weights, double *returned) {
 double entropy(int n, double *weights)
 {
     int i;
-    double sum;
+    double sum=0;
     for (i=0; i<n; i++) sum += weights[i]*log2(weights[i]); // should add smallest constant within log2()
     return -sum;
 }
