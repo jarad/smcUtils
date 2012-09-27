@@ -1,13 +1,8 @@
+useDynLib(smcUtils)
+
 export(resample,
        renormalize.weights,
        ess.weights,
        cov.weights,
-       ent.weights,
-       inverse.cdf.weights,
-       rep2id,
-       stratified.resample,
-       multinomial.resample,
-       systematic.resample,
-       residual.resample,
-       branching.resample)
+       ent.weights)
 
