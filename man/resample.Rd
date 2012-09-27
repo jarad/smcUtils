@@ -29,8 +29,7 @@ resample(weights, num.samples=length(weights),
   `nonuniformity="cov"', resampling is performed when `nonuniformity>
   threshold'. The default threshold is `0.5*num.samples' for "ess" and "cov", and
   `0.5*log2(num.samples)' for "entropy".}
-  \item{resample.function}{the resampling function to use on the remainder
-  (only used when method = "residual")}
+  \item{rrf}{for residual resampling, the resampling function to use on the residual}
   \item{engine}{run use 'R' or 'C' code}      
 }
 
