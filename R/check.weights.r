@@ -8,7 +8,7 @@ check.weights = function(weights,log=F,normalized=T)
 
     if (!normalized) 
     {
-        weights = renormalize(weights, log, "R") # returns unlogged
+        weights = renormalize.weights(weights, log, engine="R") # returns unlogged
         log=F
     }
 
