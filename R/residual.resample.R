@@ -17,7 +17,7 @@ residual.resample = function(weights, num.samples=length(weights), rrf="stratifi
         det.reps    = floor(n.exp.samps)
         num.samples   = num.samples - sum(det.reps)
         det.ids     = rep2id(det.reps, engine="R") 
-        weights     = renormalize(n.exp.samps-det.reps, engine="R")
+        weights     = renormalize.weights(n.exp.samps-det.reps, engine="R")
         switch(rrf,
             { ran.ids = stratified.resample( weights, num.samples, engine="R") },
             { ran.ids = multinomial.resample(weights, num.samples, engine="R") },

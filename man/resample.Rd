@@ -7,9 +7,9 @@
 
 \usage{
 resample(weights, num.samples=length(weights),
-         method = c("multinomial","residual","stratified","systematic","branching"),
+         method = c("stratified","multinomial","residual","systematic","branching"),
          nonuniformity = c("none","ess","cov","entropy"), threshold = NULL,
-         rrf = "multinomial", engine="R")
+         rrf = "stratified", engine="R")
 }
 
 
@@ -51,9 +51,10 @@ ws = renormalize.weights(runif(10))
 resample(ws)
 resample(ws,13)
 resample(ws,method="residual")
-resample(ws,method="residual",resample.function=stratified.resample)
+resample(ws,method="residual",rrf="stratified")
 resample(ws,17,"stratified","ess",5)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ htest }
+\keyword{ ts }

@@ -1,11 +1,11 @@
 
 resample = function(weights, num.samples=length(weights), 
-                    method = c("multinomial","residual","stratified","systematic","branching"),
+                    method = c("stratified","multinomial","residual","systematic","branching"),
                     nonuniformity = c("none","ess","cov","entropy"), threshold=NULL,
-                    rrf = "multinomial", engine="R")
+                    rrf = "stratified", engine="R")
 {
-  method        <- match.arg(method)
-  nonuniformity <- match.arg(nonuniformity)
+  method        <- match.arg(method, c("multinomial","residual","stratified","systematic","branching"))
+  nonuniformity <- match.arg(nonuniformity, c("none","ess","cov","entropy"))
 
   do.resample = FALSE
   switch(nonuniformity,

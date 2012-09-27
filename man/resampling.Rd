@@ -12,7 +12,7 @@
 
 \usage{
 multinomial.resample(weights, num.samples = length(weights), engine="R")
-residual.resample(   weights, num.samples = length(weights), rrf = "multinomial", engine="R")
+residual.resample(   weights, num.samples = length(weights), rrf = "stratified", engine="R")
 stratified.resample( weights, num.samples = length(weights), engine="R")
 systematic.resample( weights, num.samples = length(weights), engine="R")
 branching.resample(  weights, num.samples = length(weights), engine="R")
@@ -22,7 +22,7 @@ branching.resample(  weights, num.samples = length(weights), engine="R")
   \item{weights}{a vector of normalized weights}
   \item{num.samples}{the number of samples to return (for `branching.resample', 
   `num.samples' is the expected number of samples as the actual number is random)}   
-  \item{resample.function}{the resampling function to use on the remainder}
+  \item{rrf}{for residual resampling, the resampling function to use on the residual}
   \item{engine}{run use 'R' or 'C' code}      
 }
 
@@ -32,7 +32,7 @@ repeats this sampling `num.samples' times, and returns indices for the sampled
 components.
 
 'residual.resample' deterministically copies `floor(weights)' number of 
-each component and then performs `resample.function' on the remainder.
+each component and then performs `rrf' on the remainder.
 
 `stratified.resample' draws `num.samples' uniform random variables on the 
 ((i-1)/num.samples,i/num.samples) intervals of (0,1). It then uses the
