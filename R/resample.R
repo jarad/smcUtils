@@ -20,11 +20,11 @@ resample = function(weights, num.samples=length(weights),
 
   if (do.resample) {
     switch(method,
-      "multinomial" = { ids = multinomial.resample(weights, num.samples,      engine) },
-      "residual"    = { ids = residual.resample(   weights, num.samples, rrf, engine) },
-      "stratified"  = { ids = stratified.resample( weights, num.samples,      engine) },
-      "systematic"  = { ids = systematic.resample( weights, num.samples,      engine) },
-      "branching"   = { ids = branching.resample(  weights, num.samples,      engine) }
+      "multinomial" = { ids = multinomial.resample(weights, num.samples, engine) },
+      "residual"    = { ids = residual.resample(   weights, num.samples, engine, rrf) },
+      "stratified"  = { ids = stratified.resample( weights, num.samples, engine) },
+      "systematic"  = { ids = systematic.resample( weights, num.samples, engine) },
+      "branching"   = { ids = branching.resample(  weights, num.samples, engine) }
     )
     weights = rep(1/num.samples,num.samples)
   } else { 
