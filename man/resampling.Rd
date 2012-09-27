@@ -11,11 +11,11 @@
 \description{A set of resampling functions with unbiased number of replicates.}
 
 \usage{
-multinomial.resample(weights, num.samples = length(weights))
-residual.resample(   weights, num.samples = length(weights), resample.function=multinomial.resample)
-stratified.resample( weights, num.samples = length(weights))
-systematic.resample( weights, num.samples = length(weights))
-branching.resample(  weights, num.samples = length(weights))
+multinomial.resample(weights, num.samples = length(weights), engine="R")
+residual.resample(   weights, num.samples = length(weights), resample.function=multinomial.resample, engine="R")
+stratified.resample( weights, num.samples = length(weights), engine="R")
+systematic.resample( weights, num.samples = length(weights), engine="R")
+branching.resample(  weights, num.samples = length(weights), engine="R")
 }
 
 \arguments{
@@ -23,6 +23,7 @@ branching.resample(  weights, num.samples = length(weights))
   \item{num.samples}{the number of samples to return (for `branching.resample', 
   `num.samples' is the expected number of samples as the actual number is random)}   
   \item{resample.function}{the resampling function to use on the remainder}
+  \item{engine}{run use 'R' or 'C' code}      
 }
 
 \details{

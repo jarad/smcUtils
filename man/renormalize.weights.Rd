@@ -7,13 +7,13 @@
 \description{This function creates a discrete probability distribution from a 
 set of unnormalized (log) weights.}
 
-\usage{renormalize.weights(weights,log=FALSE)}
-%- maybe also 'usage' for other objects documented here.
+\usage{renormalize.weights(weights, log=FALSE, engine="R")}
 
 \arguments{
   \item{weights}{a vector of non-negative numbers}
   \item{log}{a logical indicating whether the weights are given as the logarithm
   of the weights}
+  \item{engine}{run use 'R' or 'C' code}      
 }
 \value{a vector of probabilities that sum to 1}
 

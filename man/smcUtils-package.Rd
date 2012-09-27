@@ -10,14 +10,13 @@ filtering.}
 \tabular{ll}{
 Package: \tab smcUtils\cr
 Type: \tab Package\cr
-Version: \tab 0.1.2\cr
-Date: \tab 2011-11-06\cr
+Version: \tab 0.2\cr
+Date: \tab 2012-09-27\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
 The workhorse of the package is `resample' which will perform multinomial, 
-residual, stratified, systematic, or branching resampling. It will perform 
-the resampling when a non-uniformity heuristic crosses a threshold. 
+residual, stratified, systematic, or branching resampling when a non-uniformity heuristic crosses a threshold. 
 }
 
 \author{

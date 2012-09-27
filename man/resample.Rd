@@ -9,7 +9,7 @@
 resample(weights, num.samples=length(weights),
          method = c("multinomial","residual","stratified","systematic","branching"),
          nonuniformity = c("none","ess","cov","entropy"), threshold = NULL,
-         resample.function = multinomial.resample)
+         resample.function = multinomial.resample, engine="R")
 }
 
 
@@ -31,6 +31,7 @@ resample(weights, num.samples=length(weights),
   `0.5*log2(num.samples)' for "entropy".}
   \item{resample.function}{the resampling function to use on the remainder
   (only used when method = "residual")}
+  \item{engine}{run use 'R' or 'C' code}      
 }
 
 \value{

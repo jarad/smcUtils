@@ -9,14 +9,15 @@
 number of samples given a set of weights (probabilities).}
 
 \usage{
-ess.weights(weights)
-cov.weights(weights)
-ent.weights(weights)
+ess.weights(weights, engine="R")
+cov.weights(weights, engine="R")
+ent.weights(weights, engine="R")
 }
 %- maybe also 'usage' for other objects documented here.
 
 \arguments{
   \item{weights}{a vector of weights (probabilities)}
+  \item{engine}{run use 'R' or 'C' code}
 }
 
 \details{
