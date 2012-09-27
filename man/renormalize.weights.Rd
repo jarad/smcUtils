@@ -13,7 +13,7 @@ set of unnormalized (log) weights.}
   \item{weights}{a vector of non-negative numbers}
   \item{log}{a logical indicating whether the weights are given as the logarithm
   of the weights}
-  \item{engine}{run use 'R' or 'C' code}      
+  \item{engine}{run using "R" or "C" code}      
 }
 \value{a vector of probabilities that sum to 1}
 

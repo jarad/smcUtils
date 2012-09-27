@@ -30,7 +30,7 @@ resample(weights, num.samples=length(weights),
   threshold'. The default threshold is `0.5*num.samples' for "ess" and "cov", and
   `0.5*log2(num.samples)' for "entropy".}
   \item{rrf}{for residual resampling, the resampling function to use on the residual}
-  \item{engine}{run use 'R' or 'C' code}      
+  \item{engine}{run using "R" or "C" code}      
 }
 
 \value{

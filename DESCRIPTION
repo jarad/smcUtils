@@ -4,7 +4,7 @@ Title: Utility functions for sequential Monte Carlo
 Version: 0.2
 Author: Jarad Niemi
 Maintainer: Jarad Niemi <niemi@iastate.edu>
-Date: 2012-09-26
+Date: 2012-09-27
 Author: Jarad Niemi
 Maintainer: Jarad Niemi <niemi@iastate.edu>
 Description: Provides resampling functions (multinomial, residual, stratified, and systematic),

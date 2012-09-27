@@ -17,7 +17,7 @@ ent.weights(weights, engine="R")
 
 \arguments{
   \item{weights}{a vector of weights (probabilities)}
-  \item{engine}{run use 'R' or 'C' code}
+  \item{engine}{run using "R" or "C" code}
 }
 
 \details{

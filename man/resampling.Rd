@@ -23,7 +23,7 @@ branching.resample(  weights, num.samples = length(weights), engine="R")
   \item{num.samples}{the number of samples to return (for `branching.resample', 
   `num.samples' is the expected number of samples as the actual number is random)}   
   \item{rrf}{for residual resampling, the resampling function to use on the residual}
-  \item{engine}{run use 'R' or 'C' code}      
+  \item{engine}{run using "R" or "C" code}      
 }
 
 \details{
