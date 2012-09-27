@@ -4,5 +4,10 @@ export(resample,
        renormalize.weights,
        ess.weights,
        cov.weights,
-       ent.weights)
+       ent.weights,
+       stratified.resample,
+       residual.resample,
+       multinomial.resample,
+       systematic.resample,
+       branching.resample)
 

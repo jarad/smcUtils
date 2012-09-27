@@ -1,6 +1,6 @@
 
 resample = function(weights, num.samples=length(weights), 
-                    method = c("stratified","multinomial","residual","systematic","branching"),
+                    method = c("stratified","residual","multinomial","systematic","branching"),
                     nonuniformity = c("none","ess","cov","entropy"), threshold=NULL,
                     rrf = "stratified", engine="R")
 {
