@@ -9,7 +9,7 @@
 resample(weights, num.samples=length(weights),
          method = c("multinomial","residual","stratified","systematic","branching"),
          nonuniformity = c("none","ess","cov","entropy"), threshold = NULL,
-         resample.function = multinomial.resample, engine="R")
+         rrf = "multinomial", engine="R")
 }
 
 

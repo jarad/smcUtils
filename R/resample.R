@@ -2,7 +2,7 @@
 resample = function(weights, num.samples=length(weights), 
                     method = c("multinomial","residual","stratified","systematic","branching"),
                     nonuniformity = c("none","ess","cov","entropy"), threshold=NULL,
-                    rrf = multinomial.resample, engine="R")
+                    rrf = "multinomial", engine="R")
 {
   method        <- match.arg(method)
   nonuniformity <- match.arg(nonuniformity)

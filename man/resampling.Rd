@@ -12,7 +12,7 @@
 
 \usage{
 multinomial.resample(weights, num.samples = length(weights), engine="R")
-residual.resample(   weights, num.samples = length(weights), resample.function=multinomial.resample, engine="R")
+residual.resample(   weights, num.samples = length(weights), rrf = "multinomial", engine="R")
 stratified.resample( weights, num.samples = length(weights), engine="R")
 systematic.resample( weights, num.samples = length(weights), engine="R")
 branching.resample(  weights, num.samples = length(weights), engine="R")
@@ -64,7 +64,6 @@ non-linear problems. _IEEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 
 \seealso{
 \code{\link{resample}},\code{\link{renormalize.weights}},
-\code{\link{inverse.cdf.weights}},\code{\link{rep2id}}
 }
 
 \examples{
