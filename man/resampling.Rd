@@ -69,7 +69,7 @@ non-linear problems. _IEEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 \examples{
 ws = renormalize.weights(runif(10))
 multinomial.resample(ws)
-residual.resample(ws,resample.function=stratified.resample)          
+residual.resample(ws,rrf="stratified")          
 stratified.resample(ws,15)
 systematic.resample(ws)
 branching.resample(ws)
