@@ -1,5 +1,5 @@
 
-residual.resample = function(weights, num.samples=length(weights), rrf="stratified", engine="R")
+residual.resample = function(weights, num.samples=length(weights), engine="R", rrf="stratified")
 {
     rrf = pmatch(rrf,c("stratified","multinomial","systematic"))
     if (is.na(rrf)) stop("No matching residual resampling function.")
