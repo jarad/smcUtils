@@ -10,7 +10,7 @@ set of unnormalized (log) weights.}
 \usage{renormalize.weights(weights, log=FALSE, engine="R")}
 
 \arguments{
-  \item{weights}{a vector of non-negative numbers}
+  \item{weights}{a vector of numbers (>0 if log=FALSE)}
   \item{log}{a logical indicating whether the weights are given as the logarithm
   of the weights}
   \item{engine}{run using "R" or "C" code}      
