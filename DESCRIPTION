@@ -1,7 +1,7 @@
 Package: smcUtils
 Type: Package
 Title: Utility functions for sequential Monte Carlo
-Version: 0.2
+Version: 0.2.1
 Author: Jarad Niemi
 Maintainer: Jarad Niemi <niemi@iastate.edu>
 Date: 2012-09-27

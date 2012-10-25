@@ -1,3 +1,6 @@
+v0.2.1:
+  - threshold is now in [0,1] 
+
 v0.2:
   - added C code and an engine argument to use C
   - resample function had argument change from resample.function to rrf which takes a character string

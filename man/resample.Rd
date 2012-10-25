@@ -8,7 +8,7 @@
 \usage{
 resample(weights, num.samples=length(weights),
          method = c("stratified","residual","multinomial","systematic","branching"),
-         nonuniformity = c("none","ess","cov","entropy"), threshold = NULL,
+         nonuniformity = c("none","ess","cov","entropy"), threshold = 0.5,
          rrf = "stratified", engine="R")
 }
 
@@ -23,12 +23,11 @@ resample(weights, num.samples=length(weights),
   \item{nonuniformity}{a character string indicating which hueristic to use for
   measuring weight nonuniformity. One of `"none"' (default), `"ess"', `"cov"', or
   `"entropy"', can be abbreviated. If "none", resampling will always be performed.}
-  \item{threshold}{a scalar indicating when to resample. If `nonuniformity="none"',
+  \item{threshold}{a scalar in [0,1] indicating when to resample. If `nonuniformity="none"',
   resampling is always performed regardless of threshold. If `nonuniformity="ess"'
-  or "entropy", resampling is performed when `nonuniformity<threshold'. If
-  `nonuniformity="cov"', resampling is performed when `nonuniformity>
-  threshold'. The default threshold is `0.5*num.samples' for "ess" and "cov", and
-  `0.5*log2(num.samples)' for "entropy".}
+  or "entropy", resampling is performed when `nonuniformity/num.samples<threshold'. If
+  `nonuniformity="cov"', resampling is performed when `nonuniformity/log2(num.samples)>
+  threshold'.}
   \item{rrf}{for residual resampling, the resampling function to use on the residual}
   \item{engine}{run using "R" or "C" code}      
 }
