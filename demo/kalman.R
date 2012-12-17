@@ -8,7 +8,7 @@ y = rnorm(N,true.x,sqrt(V))                             # Noisy data
 # Run a particle filter
 J = 1e2
 x  = matrix(NA,N,J); x[1,]  = rnorm(J,m0,C0) # Sample from the prior for x
-ws = matrix(NA,N,J); ws[1,] = renormalize.weights(dnorm(y[1],x[1,],sqrt(V),log=TRUE))
+ws = matrix(NA,N,J); ws[1,] = renormalize.weights(dnorm(y[1],x[1,],sqrt(V),log=TRUE), log=T)
 
 # Run a Kalman filter
 m = rep(NA,N); m[1] = m0 # Kalman filter expectation
