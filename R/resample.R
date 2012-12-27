@@ -7,6 +7,12 @@ resample = function(weights, num.samples=length(weights),
   method        <- match.arg(method)
   nonuniformity <- match.arg(nonuniformity)
 
+  if (any(weights<0)) 
+  {
+    warning("At least one negative weight. Assuming the weights are logged.\n")
+    weights = renormalize.weights(weights, log=T)
+  }
+
   do.resample = FALSE
   switch(nonuniformity,
     "none"     = { do.resample = TRUE; },
