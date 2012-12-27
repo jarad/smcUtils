@@ -33,19 +33,20 @@ for (i in 2:N) {
 
 pf.m = apply(x*ws,1,sum)
 require(Hmisc)
-pf.v = numeric(N)
+pf.lb = pf.ub = numeric(N)
 for (i in 1:N) 
 {
-  pf.v[i] = wtd.var(x[i,], ws[i,], normwt=TRUE)
+  pf.lb[i] = wtd.quantile(x[i,], ws[i,], normwt=TRUE, probs=c(.025))
+  pf.ub[i] = wtd.quantile(x[i,], ws[i,], normwt=TRUE, probs=c(.975))
 }
 
-plot(m,type='l',xlab='t',ylab='x', lty=2, ylim=range(pf.m+c(-2,2)*sqrt(pf.v)), 
+plot(m,type='l',xlab='t',ylab='x', lty=2, ylim=range(pf.ub,pf.lb), 
      main="Means and 95% Credible Intervals for Kalman and Particle filter")
 lines(m+qnorm(.975)*sqrt(M))
 lines(m-qnorm(.975)*sqrt(M))
 lines(pf.m,col='red', lty=2)
-lines(pf.m+qnorm(.975)*sqrt(pf.v), col='red')
-lines(pf.m-qnorm(.975)*sqrt(pf.v), col='red')
+lines(pf.ub, col='red')
+lines(pf.lb, col='red')
 legend("bottomleft",inset=0.01,c("Kalman filter","Particle filter"),
        col=c("black","red"),lty=rep(1,2),bg="white")
 
