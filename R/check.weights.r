@@ -1,20 +1,30 @@
 
-check.weights = function(weights,log=F,normalized=T) 
+check.weights = function(weights,log=FALSE,normalized=TRUE) 
 {
-    stopifnot(length(weights)>0)
+  stopifnot(length(weights)>0)
 
-    if (all(log,normalized))
-        warning("logged and normalized weights are unusual")
+  if (all(log,normalized))
+    warning("logged and normalized weights are unusual")
 
-    if (!normalized) 
+  if (!normalized) 
+  {
+    weights = renormalize(weights, log, engine="R") # returns unlogged
+    log = FALSE
+  }
+
+  if (log) 
+  {
+    weights=exp(weights)
+  } else
+  {
+    if (any(weights)<0) 
     {
-        weights = renormalize.weights(weights, log, engine="R") # returns unlogged
-        log=F
+      warning("log=FALSE, but negative there is at least one negative weight.\nAssuming log=TRUE.")
     }
+  }
 
-    if (log) weights=exp(weights)
-
-    stopifnot(all(weights>=0))
+  return(weights)  
 }
+
 
 

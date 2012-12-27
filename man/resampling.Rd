@@ -63,11 +63,11 @@ non-linear problems. _IEEE proceedings - Radar, Sonar and Navigation_ *146*, 2-7
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{resample}},\code{\link{renormalize.weights}},
+\code{\link{resample}},\code{\link{renormalize}},
 }
 
 \examples{
-ws = renormalize.weights(runif(10))
+ws = renormalize(runif(10))
 multinomial.resample(ws)
 residual.resample(ws,rrf="stratified")          
 stratified.resample(ws,15)

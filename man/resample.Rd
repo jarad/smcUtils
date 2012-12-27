@@ -9,7 +9,7 @@
 resample(weights, num.samples=length(weights),
          method = c("stratified","residual","multinomial","systematic","branching"),
          nonuniformity = c("none","ess","cov","entropy"), threshold = 0.5,
-         rrf = "stratified", engine="R")
+         rrf = "stratified", engine="R", log=TRUE, normalized=FALSE)
 }
 
 
@@ -30,6 +30,8 @@ resample(weights, num.samples=length(weights),
   threshold'.}
   \item{rrf}{for residual resampling, the resampling function to use on the residual}
   \item{engine}{run using "R" or "C" code}      
+  \item{log}{if TRUE, the weights are assumed to be logged}
+  \item{normalized}{if TRUE, the weights are assumed to be normalized and no error checking is done}
 }
 
 \value{
@@ -45,12 +47,12 @@ resample(weights, num.samples=length(weights),
 \seealso{\code{\link{resampling}}}
 
 \examples{
-ws = renormalize.weights(runif(10))
+ws = dnorm(0:5, log=TRUE)
 resample(ws)
 resample(ws,13)
 resample(ws,method="residual")
 resample(ws,method="residual",rrf="stratified")
-resample(ws,17,"stratified","ess",5)
+resample(ws,17,"stratified","ess",0.5)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

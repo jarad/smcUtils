@@ -2,9 +2,6 @@
 
 stratified.resample = function(weights, num.samples=length(weights), engine="R")
 {
-    check.weights(weights, log=F, normalized=T)
-    stopifnot(num.samples>0)
-
     engine=pmatch(engine, c("R","C"))
     n = length(weights)
 

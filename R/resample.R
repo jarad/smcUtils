@@ -2,16 +2,12 @@
 resample = function(weights, num.samples=length(weights), 
                     method = c("stratified","residual","multinomial","systematic","branching"),
                     nonuniformity = c("none","ess","cov","entropy"), threshold=0.5,
-                    rrf = "stratified", engine="R")
+                    rrf = "stratified", engine="R", log=TRUE, normalized=FALSE)
 {
   method        <- match.arg(method)
   nonuniformity <- match.arg(nonuniformity)
 
-  if (any(weights<0)) 
-  {
-    warning("At least one negative weight. Assuming the weights are logged.\n")
-    weights = renormalize.weights(weights, log=T)
-  }
+  if (!normalized) weights = check.weights(weights, log=log, normalized=normalized)
 
   do.resample = FALSE
   switch(nonuniformity,

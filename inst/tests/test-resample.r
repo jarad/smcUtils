@@ -15,9 +15,9 @@ test_that("ess.weights throws proper errors", {
     expect_error(ess.weights(w,"C"))
 
     w = runif(4); w[2] = -w[2]
-    expect_error(ess.weights(w    ))
-    expect_error(ess.weights(w,"R"))
-    expect_error(ess.weights(w,"C"))
+    expect_warning(ess.weights(w    ))
+    expect_warning(ess.weights(w,"R"))
+    expect_warning(ess.weights(w,"C"))
 })
 
 test_that("ess.weights works properly", {
@@ -45,9 +45,9 @@ test_that("ent.weights throws proper errors", {
     expect_error(ent.weights(w,"C"))
 
     w = runif(4); w[2] = -w[2]
-    expect_error(ent.weights(w    ))
-    expect_error(ent.weights(w,"R"))
-    expect_error(ent.weights(w,"C"))
+    expect_warning(ent.weights(w    ))
+    expect_warning(ent.weights(w,"R"))
+    expect_warning(ent.weights(w,"C"))
 })
 
 test_that("ent.weights works properly", {
@@ -76,9 +76,9 @@ test_that("cov.weights throws proper errors", {
     expect_error(cov.weights(w,"C"))
 
     w = runif(4); w[2] = -w[2]
-    expect_error(cov.weights(w    ))
-    expect_error(cov.weights(w,"R"))
-    expect_error(cov.weights(w,"C"))
+    expect_warning(cov.weights(w    ))
+    expect_warning(cov.weights(w,"R"))
+    expect_warning(cov.weights(w,"C"))
 })
 
 test_that("cov.weights works properly", {
@@ -234,34 +234,35 @@ test_that("residual resampling: R matches C", {
 
 context("Resample chooses proper method")
 
-test_that("resample chooses stratified resamping", {
-    w = runif(4); w=w/sum(w)
+n=9
+test_that("resample chooses stratified resampling", {
+    w = runif(n); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="stratified")$indices
+    set.seed(seed); m1 = resample(log(w), method="stratified")$indices
     set.seed(seed); m2 = stratified.resample(w,engine="R")
     expect_equal(m1,m2)
 })
 
-test_that("resample chooses multinomial resamping", {
-    w = runif(4); w=w/sum(w)
+test_that("resample chooses multinomial resampling", {
+    w = runif(n); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="multinomial")$indices
+    set.seed(seed); m1 = resample(log(w), method="multinomial")$indices
     set.seed(seed); m2 = multinomial.resample(w,engine="R")
     expect_equal(m1,m2)
 })
 
-test_that("resample chooses systematic resamping", {
-    w = runif(4); w=w/sum(w)
+test_that("resample chooses systematic resampling", {
+    w = runif(n); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="systematic")$indices
+    set.seed(seed); m1 = resample(log(w), method="systematic")$indices
     set.seed(seed); m2 = systematic.resample(w,engine="R")
     expect_equal(m1,m2)
 })
 
-test_that("resample chooses residual resamping", {
-    w = runif(4); w=w/sum(w)
+test_that("resample chooses residual resampling", {
+    w = runif(n); w=w/sum(w)
     seed = proc.time()
-    set.seed(seed); m1 = resample(w, method="residual")$indices
+    set.seed(seed); m1 = resample(log(w), method="residual")$indices
     set.seed(seed); m2 = residual.resample(w,engine="R")
     expect_equal(m1,m2)
 })

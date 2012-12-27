@@ -59,7 +59,7 @@ Jarad Niemi
 }
 
 \examples{
-ws = renormalize.weights(runif(10))
+ws = renormalize(runif(10))
 ess.weights(ws)
 cov.weights(ws)
 ent.weights(ws)
