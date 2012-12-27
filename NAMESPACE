@@ -1,7 +1,7 @@
 useDynLib(smcUtils)
 
 export(resample,
-       renormalize.weights,
+       renormalize,
        ess.weights,
        cov.weights,
        ent.weights,
@@ -11,3 +11,4 @@ export(resample,
        systematic.resample,
        branching.resample)
 
+export(renormalize.weights)
