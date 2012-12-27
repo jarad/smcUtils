@@ -1,6 +1,6 @@
 ## Comparing particle filtering with the Kalman filter
-# Generate data from a local level linear model
-N = 1000; W = 1^2; V = 1; m0 = 0; C0 = 1
+# Generate data from a local level model
+N = 1000; W = 0.1^2; V = 1; m0 = 0; C0 = 1
 true.x = rep(NA,N); true.x[1] = rnorm(1,m0,sqrt(C0))
 for (i in 2:N) true.x[i] = rnorm(1,true.x[i-1],sqrt(W)) # Evolve x
 y = rnorm(N,true.x,sqrt(V))                             # Noisy data
@@ -20,7 +20,7 @@ for (i in 2:N) {
   setTxtProgressBar(pb, i)
 
   # Particle filter
-  component   = resample(ws[i-1,],J,"stratified","ess",0.8*J)
+  component   = resample(ws[i-1,],J,"stratified","ess",0.8, log=F)
   x[i,]       = rnorm(J,x[i-1,component$indices],sqrt(W))
   log.weights = log(component$weights)+dnorm(y[i],x[i,],sqrt(V),log=TRUE)
   ws[i,]      = renormalize(log.weights,log=TRUE)
@@ -28,12 +28,24 @@ for (i in 2:N) {
   # Kalman filter
   K    = (M[i-1]+W)/(M[i-1]+W+V) # Adaptive coefficient
   m[i] = K*y[i]+(1-K)*m[i-1]
-  M[i] = K*M[i-1]
+  M[i] = K*V
 }
 
 pf.m = apply(x*ws,1,sum)
-plot(m,type='l',ylim=range(pf.m,m),xlab='t',ylab='x')
-lines(pf.m,col='red')
-legend("bottomleft",inset=0.01,c("Kalman filter mean","Particle filter mean"),
+require(Hmisc)
+pf.v = numeric(N)
+for (i in 1:N) 
+{
+  pf.v[i] = wtd.var(x[i,], ws[i,], normwt=TRUE)
+}
+
+plot(m,type='l',xlab='t',ylab='x', lty=2, ylim=range(pf.m+c(-2,2)*sqrt(pf.v)), 
+     main="Means and 95% Credible Intervals for Kalman and Particle filter")
+lines(m+qnorm(.975)*sqrt(M))
+lines(m-qnorm(.975)*sqrt(M))
+lines(pf.m,col='red', lty=2)
+lines(pf.m+qnorm(.975)*sqrt(pf.v), col='red')
+lines(pf.m-qnorm(.975)*sqrt(pf.v), col='red')
+legend("bottomleft",inset=0.01,c("Kalman filter","Particle filter"),
        col=c("black","red"),lty=rep(1,2),bg="white")
 
