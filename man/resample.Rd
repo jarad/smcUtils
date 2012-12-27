@@ -14,7 +14,7 @@ resample(weights, num.samples=length(weights),
 
 
 \arguments{
-  \item{weights}{a vector of normalized weights}
+  \item{weights}{a vector of weights, possibly logged, unnormalized, or both}
   \item{num.samples}{a scalar indicating the number of samples to return (for `branching.resample',
   `num.samples' is the expected number of samples as the actual number is random)}
   \item{method}{a character string indicating the resampling method to use. One
