@@ -17,7 +17,7 @@ check.weights = function(weights,log=FALSE,normalized=TRUE)
     weights=exp(weights)
   } else
   {
-    if (any(weights)<0) 
+    if (any(weights<0)) 
     {
       warning("log=FALSE, but negative there is at least one negative weight.\nAssuming log=TRUE.")
     }
