@@ -31,7 +31,10 @@
         <hr>
 
         <section id="main_content">
-          <p>This is an <a href="http://r-project.org">R</a> package for sequential Monte Carlo (particle filtering) utilities. The package can be installed in <a href="http://r-project.org">R</a> using <code>install.packages("smcUtils")</code> and loaded using <code>library(smcUtils)</code>. </p>
+     library(devtools) # may need to install.packages("devtools")
+
+    install_github("smcUtils","jarad")
+          <p>This is an <a href="http://r-project.org">R</a> package for sequential Monte Carlo (particle filtering) utilities. The package can be installed in <a href="http://r-project.org">R</a> using <code>install.packages("smcUtils")</code> and loaded using <code>library(smcUtils)</code>. The development version can be installed using <code>install_github("smcUtils","jarad")</code> where <code>install_github</code> is from the <a href="http://cran.r-project.org/web/packages/devtools/index.html" target="_blank">devtools package</a>.</p>
         </section>
 
         <footer>
