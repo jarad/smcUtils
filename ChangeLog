@@ -1,3 +1,6 @@
+v0.2.3:
+  - inst/tests/test-resample.r -> inst/tests/test-resample.R
+
 v0.2.2:
   - changed renormalize.weights to renormalize
 
