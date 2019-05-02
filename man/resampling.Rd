@@ -12,7 +12,7 @@
 
 \usage{
 multinomial.resample(weights, num.samples = length(weights), engine="R")
-residual.resample(   weights, num.samples = length(weights), engine="R", rrf = "stratified")
+residual.resample(weights, num.samples = length(weights), engine="R", rrf = "stratified")
 stratified.resample( weights, num.samples = length(weights), engine="R")
 systematic.resample( weights, num.samples = length(weights), engine="R")
 branching.resample(  weights, num.samples = length(weights), engine="R")
