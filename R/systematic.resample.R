@@ -9,7 +9,7 @@ systematic.resample = function(weights, num.samples=length(weights), engine="R")
 
     switch(engine,
     {
-        u = runif(1,0,1/num.samples)+seq(0,by=1/num.samples,length=num.samples)
+        u = stats::runif(1,0,1/num.samples)+seq(0,by=1/num.samples,length=num.samples)
         return(inverse.cdf.weights(weights,u,engine="R"))
     },
     {

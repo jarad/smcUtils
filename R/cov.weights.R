@@ -7,7 +7,7 @@ cov.weights = function(weights, engine="R")
   switch(engine,
   {
     # R implementation
-    return(var(weights)/mean(weights)^2)
+    return(stats::var(weights)/mean(weights)^2)
   
     # Could compute this as
     # return(mean((length(weights)*weights-1)^2))

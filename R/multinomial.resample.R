@@ -14,7 +14,7 @@ multinomial.resample = function(weights, num.samples=length(weights), engine="R"
         # so to be consistent with C, use inverse.cdf
         #return(sort(sample(n, num.samples, replace = TRUE, prob = weights)))
 
-        return(inverse.cdf.weights(weights,runif(num.samples),engine="R"))
+        return(inverse.cdf.weights(weights,stats::runif(num.samples),engine="R"))
     },
     {
         # C implementation
