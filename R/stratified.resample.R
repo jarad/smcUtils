@@ -9,7 +9,7 @@ stratified.resample = function(weights, num.samples=length(weights), engine="R")
     {
         lbs = seq(0, by=1/num.samples, length=num.samples)
         ubs = lbs+1/num.samples
-        u = runif(num.samples, lbs, ubs)
+        u = stats::runif(num.samples, lbs, ubs)
         return(inverse.cdf.weights(weights,u,engine="R"))
     },
     {

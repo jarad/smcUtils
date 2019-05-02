@@ -1,5 +1,5 @@
 
-inverse.cdf.weights = function(weights, uniforms=runif(length(weights)), engine="R")
+inverse.cdf.weights = function(weights, uniforms=stats::runif(length(weights)), engine="R")
 {
     check.weights(weights)
     check.weights(uniforms)
